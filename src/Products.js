@@ -1,10 +1,26 @@
 import React from 'react';
+import axios from 'axios';
 
-const Products = ({ products }) => {
+const Products = ({ products, loadData }) => {
+  const deleteProd = prodId => {
+    return axios.delete(`/api/products/${prodId}`).then(() => loadData());
+  };
+
   return (
-    <ul id="products">
+    <ul id="products" className="list-group">
       {products.map(product => (
-        <li key={product.id}>{product.name}</li>
+        <li key={product.id} className="list-group-item">
+          {product.name}
+          <br />
+          <span>${product.price}</span>
+          <br />
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => deleteProd(product.id)}
+          >
+            Delete
+          </button>
+        </li>
       ))}
     </ul>
   );

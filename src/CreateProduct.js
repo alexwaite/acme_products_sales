@@ -14,10 +14,12 @@ export default class CreateProduct extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    await axios.post('/api/products', {
-      name: this.state.name,
-      price: this.state.price,
-    });
+    await axios
+      .post('/api/products', {
+        name: this.state.name,
+        price: this.state.price,
+      })
+      .then(() => this.props.loadData());
   };
 
   handleChange = function(event) {
@@ -28,10 +30,22 @@ export default class CreateProduct extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>Product Name:</label>
-        <input name="name" onChange={this.handleChange} type="text" />
+        <input
+          name="name"
+          className="form-control"
+          onChange={this.handleChange}
+          type="text"
+        />
+        <br />
 
         <label>Product Price:</label>
-        <input name="price" onChange={this.handleChange} type="number" />
+        <input
+          name="price"
+          className="form-control"
+          onChange={this.handleChange}
+          type="number"
+        />
+        <br />
         <button type="submit">Submit</button>
       </form>
     );

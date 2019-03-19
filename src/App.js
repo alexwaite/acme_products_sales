@@ -18,7 +18,7 @@ export default class App extends Component {
   }
 
   loadData = () => {
-    axios
+    return axios
       .get('/api/products')
       .then(response => this.setState({ products: response.data }));
   };
@@ -32,9 +32,18 @@ export default class App extends Component {
           <Route
             exact
             path="/api/products"
-            render={() => <Products products={this.state.products} />}
+            render={() => (
+              <Products
+                products={this.state.products}
+                loadData={this.loadData}
+              />
+            )}
           />
-          <Route exact path="/api/products/create" component={CreateProduct} />
+          <Route
+            exact
+            path="/api/products/create"
+            render={() => <CreateProduct loadData={this.loadData} />}
+          />
         </div>
       </HashRouter>
     );

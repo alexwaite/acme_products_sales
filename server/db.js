@@ -10,10 +10,20 @@ const syncAndSeed = () => {
   return conn
     .sync({ force: true })
     .then(() => {
-      Product.create({
-        name: 'Foo',
-        price: '5.99',
-      });
+      return Promise.all([
+        Product.create({
+          name: 'Foo',
+          price: '5.99',
+        }),
+        Product.create({
+          name: 'Bar',
+          price: '4.99',
+        }),
+        Product.create({
+          name: 'Bazz',
+          price: '6.49',
+        }),
+      ]);
     })
     .then(() => console.log('connection synced'));
 };

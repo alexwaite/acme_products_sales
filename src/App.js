@@ -42,6 +42,17 @@ export default class App extends Component {
           />
           <Route
             exact
+            path="/api/products/sales"
+            render={() => (
+              <Products
+                products={this.state.products.filter(
+                  product => product.discountPercent > 0
+                )}
+              />
+            )}
+          />
+          <Route
+            exact
             path="/api/products/create"
             render={() => <CreateProduct loadData={this.loadData} />}
           />

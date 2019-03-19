@@ -15,6 +15,11 @@ const Nav = () => {
         </Link>
       </li>
       <li className="nav-item">
+        <Link className="nav-link" to="/api/products/sales">
+          Sales
+        </Link>
+      </li>
+      <li className="nav-item">
         <Link className="nav-link" to="/api/products/create">
           Create
         </Link>

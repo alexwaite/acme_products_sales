@@ -51,7 +51,7 @@ export default class CreateProduct extends Component {
         />
         <br />
 
-        <label>Discount Percentage</label>
+        <label>Discount Percentage:</label>
         <input
           name="discountPercent"
           className="form-control"
@@ -60,7 +60,7 @@ export default class CreateProduct extends Component {
         />
 
         <br />
-        <label>Availability</label>
+        <label>Availability:</label>
         <select
           name="availability"
           className="form-control"
@@ -71,7 +71,9 @@ export default class CreateProduct extends Component {
           <option value="Discontinued">Discontinued</option>
         </select>
         <br />
-        <button type="submit">Submit</button>
+        <button className="btn btn-primary" type="submit">
+          Create Product
+        </button>
       </form>
     );
   }

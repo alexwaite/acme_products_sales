@@ -37,7 +37,7 @@ const syncAndSeed = () => {
           name: 'Bar',
           price: '4.99',
           availability: 'Backordered',
-          discountPercent: 30,
+          discountPercent: 10,
         }),
         Product.create({
           name: 'Bazz',

@@ -12,9 +12,29 @@ const Products = ({ products, loadData }) => {
         <li key={product.id} className="list-group-item">
           {product.name}
           <br />
-          <span>${product.price}</span>
+          <span
+            style={
+              product.discountPercent > 0
+                ? { textDecoration: 'line-through' }
+                : { textDecoration: 'none' }
+            }
+          >
+            ${product.price}
+          </span>
           <br />
-          <span className="badge">{product.availability}</span>
+          {product.discountPercent > 0 ? (
+            <span className="badge badge-success">
+              $
+              {(product.price * (1 - product.discountPercent / 100)).toFixed(2)}
+            </span>
+          ) : (
+            ''
+          )}
+          <br />
+          <span style={{ margin: '12px 0 0 0' }} className="badge">
+            {product.availability}
+          </span>
+          <br />
           <br />
           <button
             type="button"

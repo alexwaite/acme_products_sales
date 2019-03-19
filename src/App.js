@@ -28,7 +28,7 @@ export default class App extends Component {
       <HashRouter>
         <div>
           <h1>Acme Products/Sales</h1>
-          <Nav />
+          <Nav products={this.state.products} />
           <Route exact path="/" render={() => <h4>Welcome to Acme!</h4>} />
           <Route
             exact
@@ -48,6 +48,7 @@ export default class App extends Component {
                 products={this.state.products.filter(
                   product => product.discountPercent > 0
                 )}
+                loadData={this.loadData}
               />
             )}
           />

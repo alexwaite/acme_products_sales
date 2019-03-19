@@ -2,8 +2,24 @@ const Sequelize = require('sequelize');
 const conn = new Sequelize(process.env.DATABASE_URL, { logging: false });
 
 const Product = conn.define('product', {
-  name: Sequelize.STRING,
-  price: Sequelize.DECIMAL,
+  name: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  price: Sequelize.DECIMAL(10, 2),
+  availability: {
+    type: Sequelize.STRING,
+    validate: {
+      isIn: [['In Stock', 'Backordered', 'Discontinued']],
+    },
+  },
+  discountPercent: {
+    type: Sequelize.INTEGER,
+    validate: {
+      max: 99,
+      min: 0,
+    },
+  },
 });
 
 const syncAndSeed = () => {
@@ -14,14 +30,20 @@ const syncAndSeed = () => {
         Product.create({
           name: 'Foo',
           price: '5.99',
+          availability: 'In Stock',
+          discountPercent: 0,
         }),
         Product.create({
           name: 'Bar',
           price: '4.99',
+          availability: 'Backordered',
+          discountPercent: 30,
         }),
         Product.create({
           name: 'Bazz',
           price: '6.49',
+          availability: 'Discontinued',
+          discountPercent: 0,
         }),
       ]);
     })

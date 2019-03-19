@@ -7,6 +7,8 @@ export default class CreateProduct extends Component {
     this.state = {
       name: '',
       price: 0,
+      discountPercent: 0,
+      availability: 'In Stock',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -18,6 +20,8 @@ export default class CreateProduct extends Component {
       .post('/api/products', {
         name: this.state.name,
         price: this.state.price,
+        discountPercent: this.state.discountPercent,
+        availability: this.state.availability,
       })
       .then(() => this.props.loadData());
   };
@@ -43,8 +47,29 @@ export default class CreateProduct extends Component {
           name="price"
           className="form-control"
           onChange={this.handleChange}
+          type="decimal"
+        />
+        <br />
+
+        <label>Discount Percentage</label>
+        <input
+          name="discountPercent"
+          className="form-control"
+          onChange={this.handleChange}
           type="number"
         />
+
+        <br />
+        <label>Availability</label>
+        <select
+          name="availability"
+          className="form-control"
+          onChange={this.handleChange}
+        >
+          <option value="In Stock">In Stock</option>
+          <option value="Backordered">Backordered</option>
+          <option value="Discontinued">Discontinued</option>
+        </select>
         <br />
         <button type="submit">Submit</button>
       </form>

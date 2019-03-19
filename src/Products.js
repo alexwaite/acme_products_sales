@@ -14,6 +14,8 @@ const Products = ({ products, loadData }) => {
           <br />
           <span>${product.price}</span>
           <br />
+          <span className="badge">{product.availability}</span>
+          <br />
           <button
             className="btn btn-danger btn-sm"
             onClick={() => deleteProd(product.id)}

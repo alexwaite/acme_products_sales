@@ -29,6 +29,7 @@ export default class App extends Component {
         <div>
           <h1>Acme Products/Sales</h1>
           <Nav />
+          <Route exact path="/" render={() => <h4>Welcome to Acme!</h4>} />
           <Route
             exact
             path="/api/products"

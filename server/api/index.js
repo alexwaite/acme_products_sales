@@ -4,12 +4,14 @@ const { Product } = require('../db.js');
 router.get('/products', (req, res, next) => {
   Product.findAll()
     .then(products => res.send(products))
+    .then(errMsg => res.status(204).send(errMsg))
     .catch(next);
 });
 
 router.post('/products', (req, res, next) => {
   Product.create(req.body)
     .then(product => res.json(product))
+    .then(errMsg => res.status(204).send(errMsg))
     .catch(next);
 });
 

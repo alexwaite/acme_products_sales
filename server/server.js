@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const { db, Product, syncAndSeed } = require('./db');
+const { syncAndSeed } = require('./db');
 
 const port = process.env.port || 3000;
 
